@@ -11,11 +11,12 @@ import Summary from './components/summary/Summary'
 import Workhistory from './components/workhistory/Workhistory'
 import Skills from './components/skills/Skills'
 import Timeline from './components/timeline/Timeline'
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
 
   return (
-    
+    <BrowserRouter basename="/VeereshPortfolio">
     <div className="w-[100%] mx-auto">
       <Header />     
       <Summary /> 
@@ -29,6 +30,7 @@ function App() {
       <Footer />
       {/* <Counter /> */}
     </div>
+      </BrowserRouter>
     
   )
 }
