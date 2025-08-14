@@ -1,6 +1,6 @@
 import React from "react";
 import { FaBriefcase, FaGraduationCap } from "react-icons/fa";
-import { MdTimeline } from "react-icons/md"; // Icon for heading
+import { MdTimeline } from "react-icons/md"; // Icon for the heading
 
 function Timeline() {
   const items = [
@@ -46,11 +46,9 @@ function Timeline() {
   return (
     <div className="w-[80%] mx-auto rounded-lg bg-gray-50 py-10 mb-20">
       {/* Heading */}
-      <div className="flex items-center mb-8">
-        <MdTimeline className="text-blue-500 text-3xl mr-3" />
-        <h2 className="text-2xl font-bold text-gray-800 uppercase tracking-wide">
-          My Timeline
-        </h2>
+      <div className="flex items-center gap-2 mb-8 px-4">
+        <MdTimeline className="text-blue-500 text-2xl" />
+        <h2 className="text-2xl font-bold text-gray-800">Timeline</h2>
       </div>
 
       <div className="relative px-4">
@@ -64,18 +62,18 @@ function Timeline() {
           >
             <div
               className={`relative bg-white p-5 rounded-lg shadow hover:shadow-lg transition duration-300
-                w-full md:w-5/12
-                ml-12 md:ml-0
-                md:mr-auto
-              `}
+                  w-full md:w-5/12
+                  ml-12 md:ml-0
+                  md:mr-auto
+                `}
             >
               {/* Icon near vertical line */}
               <div
                 className={`absolute top-6 flex items-center justify-center w-9 h-9 bg-white border-2 rounded-full
-                  border-blue-400
-                  left-[-36px]
-                  md:left-auto md:right-[-36px]
-                `}
+                    border-blue-400
+                    left-[-36px]
+                    md:left-auto md:right-[-36px]
+                  `}
               >
                 {item.type === "experience" ? (
                   <FaBriefcase className="text-blue-500" size={16} />
