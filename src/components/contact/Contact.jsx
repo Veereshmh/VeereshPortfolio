@@ -16,8 +16,7 @@ function Contact() {
 
       {/* Form */}
       <div className="bg-white shadow-md border rounded-lg p-6">
-        <h3 className="text-lg font-bold mb-6">Hi Veeresh,</h3>
-
+        
         <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Name */}
           <div>
