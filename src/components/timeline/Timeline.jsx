@@ -48,7 +48,7 @@ function Timeline() {
       {/* Heading outside white box */}
       <div className="flex items-center gap-2 mb-6">
         <FaBriefcase className="text-blue-500 text-2xl" />
-        <h2 className="text-2xl font-bold text-gray-800">Timeline</h2>
+        <h2 className="text-2xl font-bold text-gray-800 uppercase tracking-wider">Timeline</h2>
       </div>
 
       {/* White Box */}
