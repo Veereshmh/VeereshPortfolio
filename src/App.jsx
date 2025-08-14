@@ -12,6 +12,7 @@ import Workhistory from './components/workhistory/Workhistory'
 import Skills from './components/skills/Skills'
 import Timeline from './components/timeline/Timeline'
 import { BrowserRouter } from "react-router-dom";
+import Languages from './components/languages/Languages'
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
       <Workhistory />
       <Education />
       <Skills />
+      <Languages />
       <Timeline />
       {/* <Userapi /> */}
       {/* <Counting /> */}
