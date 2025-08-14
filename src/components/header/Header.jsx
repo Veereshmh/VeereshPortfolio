@@ -1,5 +1,5 @@
 import React from 'react';
-import contactbanner from './assets/contact-banner.jpg';
+import contactbanner from '../../assets/contact-banner.jpg';
 
 function Header() {
   return (
