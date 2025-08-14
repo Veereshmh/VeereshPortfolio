@@ -7,7 +7,7 @@ function Overview() {
       {/* Heading with icon */}
       <div className="flex items-center mb-4">
         <FaBriefcase className="text-blue-500 text-2xl mr-3" />
-        <h2 className="uppercase tracking-wider font-bold text-gray-800">Overview</h2>
+        <h2 className="uppercase tracking-wider">Overview</h2>
       </div>
 
       {/* Experience Box */}
