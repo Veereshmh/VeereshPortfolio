@@ -7,7 +7,7 @@ function Overview() {
       {/* Heading with icon */}
       <div className="flex items-center mb-6"> {/* Increased margin */}
         <FaBriefcase className="text-blue-500 text-3xl mr-3" />
-        <h2 className="uppercase tracking-wider text-xl font-bold">Overview</h2>
+        <h2 className="uppercase tracking-wider">Overview</h2>
       </div>
 
       {/* Experience Box */}
