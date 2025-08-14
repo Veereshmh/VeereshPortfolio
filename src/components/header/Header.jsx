@@ -1,7 +1,10 @@
 import React from 'react';
 import contactbanner from '../../assets/contact-banner.jpg';
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+
+  const navigate = useNavigate();
   return (
     <div className="w-[80%] mx-auto">
       {/* Banner Image */}
@@ -28,7 +31,7 @@ function Header() {
 
         {/* Right Button */}
         <div className="w-full md:w-1/2 p-2 flex justify-center md:justify-end items-center">
-          <button className="uppercase bg-blue-600 text-white font-semibold py-3 px-6 text-base sm:text-lg rounded-lg hover:bg-blue-700 transition">
+          <button onClick={() => navigate("/contact")} className="uppercase bg-blue-600 text-white font-semibold py-3 px-6 text-base sm:text-lg rounded-lg hover:bg-blue-700 transition">
             Contact Me
           </button>
         </div>

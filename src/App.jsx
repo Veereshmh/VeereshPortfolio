@@ -11,14 +11,24 @@ import Summary from './components/summary/Summary'
 import Workhistory from './components/workhistory/Workhistory'
 import Skills from './components/skills/Skills'
 import Timeline from './components/timeline/Timeline'
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes } from "react-router-dom";
 import Languages from './components/languages/Languages'
+import Contact from './components/contact/Contact'
+import Notfound from './components/notfound/Notfound'
 
 function App() {
 
   return (
     <BrowserRouter basename="/VeereshPortfolio">
     <div className="w-[100%] mx-auto">
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<NotFound />} /> {/* Wildcard Route */}
+        </Routes>
+
+      </Router>
       <Header />     
       <Summary /> 
       <Overview />
