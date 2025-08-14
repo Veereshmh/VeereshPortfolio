@@ -1,6 +1,6 @@
 import React from "react";
 import { FaBriefcase, FaGraduationCap } from "react-icons/fa";
-// import { FaBriefcase } from "react-icons/fa";
+import { MdTimeline } from "react-icons/md";
 
 function Timeline() {
   const items = [
@@ -47,8 +47,8 @@ function Timeline() {
     <div className="w-[80%] mx-auto mb-20">
       {/* Heading outside white box */}
       <div className="flex items-center gap-2 mb-6">
-        <FaBriefcase className="text-blue-500 text-2xl" />
-        <h2 className="uppercase tracking-wider">Timeline</h2>
+        <MdTimeline className="text-blue-500 text-2xl" />
+        <h2 className="text-2xl font-bold text-gray-800">Timeline</h2>
       </div>
 
       {/* White Box */}
