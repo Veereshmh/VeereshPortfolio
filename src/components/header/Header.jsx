@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import contactbanner from './assets/contact-banner.jpg';
 
 function Header() {
   return (
@@ -6,7 +7,7 @@ function Header() {
       {/* Banner Image */}
       <img
         className="w-full h-48 md:h-64 lg:h-80 object-cover"
-        src="../src/assets/contact-banner.jpg"
+        src={contactbanner}
         alt="Header Banner"
       />
 
