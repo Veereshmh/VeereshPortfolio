@@ -1,6 +1,6 @@
 import React from "react";
 import { FaBriefcase, FaGraduationCap } from "react-icons/fa";
-import { MdTimeline } from "react-icons/md"; // Icon for the heading
+import { MdTimeline } from "react-icons/md";
 
 function Timeline() {
   const items = [
@@ -44,51 +44,54 @@ function Timeline() {
   ];
 
   return (
-    <div className="w-[80%] mx-auto rounded-lg bg-gray-50 py-10 mb-20">
-      {/* Heading */}
-      <div className="flex items-center gap-2 mb-8 px-4">
+    <div className="w-[80%] mx-auto mb-20">
+      {/* Heading outside white box */}
+      <div className="flex items-center gap-2 mb-6">
         <MdTimeline className="text-blue-500 text-2xl" />
         <h2 className="text-2xl font-bold text-gray-800">Timeline</h2>
       </div>
 
-      <div className="relative px-4">
-        {/* Vertical line */}
-        <div className="absolute top-0 h-full bg-gray-300 w-0.5 left-8 md:left-auto md:right-0"></div>
+      {/* White Box */}
+      <div className="rounded-lg bg-gray-50 py-10">
+        <div className="relative px-4">
+          {/* Vertical line */}
+          <div className="absolute top-0 h-full bg-gray-300 w-0.5 left-8 md:left-auto md:right-0"></div>
 
-        {items.map((item, index) => (
-          <div
-            key={index}
-            className="mb-10 w-full flex flex-col md:flex-row md:justify-start"
-          >
+          {items.map((item, index) => (
             <div
-              className={`relative bg-white p-5 rounded-lg shadow hover:shadow-lg transition duration-300
+              key={index}
+              className="mb-10 w-full flex flex-col md:flex-row md:justify-start"
+            >
+              <div
+                className={`relative bg-white p-5 rounded-lg shadow hover:shadow-lg transition duration-300
                   w-full md:w-5/12
                   ml-12 md:ml-0
                   md:mr-auto
                 `}
-            >
-              {/* Icon near vertical line */}
-              <div
-                className={`absolute top-6 flex items-center justify-center w-9 h-9 bg-white border-2 rounded-full
+              >
+                {/* Icon near vertical line */}
+                <div
+                  className={`absolute top-6 flex items-center justify-center w-9 h-9 bg-white border-2 rounded-full
                     border-blue-400
                     left-[-36px]
                     md:left-auto md:right-[-36px]
                   `}
-              >
-                {item.type === "experience" ? (
-                  <FaBriefcase className="text-blue-500" size={16} />
-                ) : (
-                  <FaGraduationCap className="text-green-500" size={16} />
-                )}
-              </div>
+                >
+                  {item.type === "experience" ? (
+                    <FaBriefcase className="text-blue-500" size={16} />
+                  ) : (
+                    <FaGraduationCap className="text-green-500" size={16} />
+                  )}
+                </div>
 
-              {/* Content */}
-              <h3 className="text-lg font-bold text-gray-800">{item.title}</h3>
-              <p className="text-gray-600">{item.company}</p>
-              <p className="text-sm text-gray-500">{item.duration}</p>
+                {/* Content */}
+                <h3 className="text-lg font-bold text-gray-800">{item.title}</h3>
+                <p className="text-gray-600">{item.company}</p>
+                <p className="text-sm text-gray-500">{item.duration}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
