@@ -6,7 +6,7 @@ function Header() {
       {/* Banner Image */}
       <img
         className="w-full h-48 md:h-64 lg:h-80 object-cover"
-        src="./src/assets/contact-banner.jpg"
+        src="../src/assets/contact-banner.jpg"
         alt="Header Banner"
       />
 
