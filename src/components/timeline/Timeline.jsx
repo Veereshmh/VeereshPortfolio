@@ -1,6 +1,6 @@
 import React from "react";
 import { FaBriefcase, FaGraduationCap } from "react-icons/fa";
-import { FaBriefcase } from "react-icons/fa";
+// import { FaBriefcase } from "react-icons/fa";
 
 function Timeline() {
   const items = [
