@@ -4,6 +4,7 @@ import { FaTools } from 'react-icons/fa'; // Skills icon
 function Skills() {
   const skills = [
     "React.js",
+    "Redux",
     "Angular (version 12+)",
     "JavaScript",
     "HTML, HTML5",
