@@ -21,7 +21,7 @@ function Workhistory() {
     },
     {
       id: 3,
-      company: "Accenture Solutions Pvt Ltd",
+      company: "Accenture Services Pvt Ltd",
       logo: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
       designation: "Knowledge Management Analyst",
       joining: "December 2018",
