@@ -8,38 +8,38 @@ function Timeline() {
       type: "experience",
       title: "Senior Software Engineer",
       company: "Truminds Software System",
-      duration: "01.2021 - 01.2024",
+      duration: "June 2021 - August 2024",
     },
     {
       type: "experience",
       title: "UI Developer",
       company: "Gipzonics Techno Labs LLP",
-      duration: "01.2019 - 01.2021",
+      duration: "December 2019 - June 2021",
     },
     {
       type: "experience",
       title: "Web Developer & Knowledge Management Analyst",
       company:
         "Fort Solutions (Client Project via Accenture), later full-time at Accenture",
-      duration: "01.2016 - 01.2019",
+      duration: "August 2016 - July 2019",
     },
     {
       type: "experience",
       title: "Web Developer",
       company: "Commercekarma",
-      duration: "01.2016 - 01.2019",
+      duration: "October 2016 - August 2019",
     },
     {
       type: "education",
       title: "Bachelor of Engineering (Computer Science)",
       company: "Visvesvaraya Technological University",
-      duration: "2012 - 2016",
+      duration: "August 2010 - May 2014",
     },
     {
       type: "education",
       title: "Diploma (Computer Science)",
       company: "Board of Technical Eduction",
-      duration: "2006 - 2010",
+      duration: "August 2006 - May 2010",
     },
   ];
 
