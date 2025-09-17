@@ -17,7 +17,7 @@ function Education() {
       logo: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
       designation: "Diploma - Computer Science & Engg",
       joining: "Jun 2006",
-      leaving: "Aug 2010",
+      leaving: "May 2010",
     },
   ];
 
