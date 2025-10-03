@@ -10,7 +10,7 @@ import Timeline from './components/timeline/Timeline'
 import Languages from './components/languages/Languages'
 import Contact from './components/contact/Contact'
 import Notfound from './components/notfound/Notfound'
-import ContactsTable from "./components/ContactsTable";
+import ContactsTable from "./components/contact/ContactsTable";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 // Temporary Home component
