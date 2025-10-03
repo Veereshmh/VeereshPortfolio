@@ -11,6 +11,7 @@ import Languages from './components/languages/Languages'
 import Contact from './components/contact/Contact'
 import Notfound from './components/notfound/Notfound'
 import ContactsTable from "./components/contact/ContactsTable";
+import ThankYou from "./ThankYou";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 // Temporary Home component
@@ -44,6 +45,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/thank-you" element={<ThankYou />} />
           <Route path="/contacts" element={<ContactsTable />} />
           <Route path="*" element={<Notfound />} /> {/* Wildcard Route */}
         </Routes>

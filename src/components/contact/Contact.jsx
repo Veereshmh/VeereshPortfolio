@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Contact() {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // ✅ now used
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -12,7 +12,6 @@ function Contact() {
 
   const [errors, setErrors] = useState({});
 
-  // Validation function
   const validateField = (name, value) => {
     if (!value.trim()) return `${name} is required`;
     if (name === "email") {
@@ -33,26 +32,21 @@ function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validate all fields
     const newErrors = {};
     Object.keys(formData).forEach(
       (key) => (newErrors[key] = validateField(key, formData[key]))
     );
-
     setErrors(newErrors);
 
     if (Object.values(newErrors).every((err) => err === "")) {
-      // Save in localStorage
       const existingData = JSON.parse(localStorage.getItem("contacts")) || [];
       localStorage.setItem(
         "contacts",
         JSON.stringify([...existingData, formData])
       );
 
-      // Clear form
-      setFormData({ firstName: "", lastName: "", email: "", message: "" });
-
-      alert("Thank you! Your message has been sent.");
+      // Navigate to Thank You page
+      navigate("/thank-you");
     }
   };
 
@@ -65,20 +59,20 @@ function Contact() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-8">
-        {/* Left Side - Info */}
+        {/* Left Side */}
         <div className="space-y-4">
           <h2 className="text-2xl font-bold">Our Address</h2>
-          <p>📍 Bangalore, India</p>
-          <p>📧 Veereshmh407@gmail.com</p>
-          <p>📞 +91 9986027208 / 6366621888</p>
+          <p>📍 123 Main Street, Bangalore, India</p>
+          <p>📧 info@example.com</p>
+          <p>📞 +91 98765 43210</p>
         </div>
 
-        {/* Right Side - Form */}
+        {/* Right Side Form */}
         <div className="bg-white p-6 rounded-lg shadow-lg">
           <h2 className="text-2xl font-bold mb-4">Get In Touch</h2>
+          <p className="text-gray-500 mb-4">Fill out the form below</p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            {/* First & Last Name */}
             <div className="flex gap-4">
               <div className="flex-1">
                 <label className="block mb-1 font-medium">First Name</label>
@@ -94,7 +88,6 @@ function Contact() {
                   <p className="text-red-500 text-sm">{errors.firstName}</p>
                 )}
               </div>
-
               <div className="flex-1">
                 <label className="block mb-1 font-medium">Last Name</label>
                 <input
@@ -111,7 +104,6 @@ function Contact() {
               </div>
             </div>
 
-            {/* Email */}
             <div>
               <label className="block mb-1 font-medium">Email</label>
               <input
@@ -127,7 +119,6 @@ function Contact() {
               )}
             </div>
 
-            {/* Message */}
             <div>
               <label className="block mb-1 font-medium">Message</label>
               <textarea
