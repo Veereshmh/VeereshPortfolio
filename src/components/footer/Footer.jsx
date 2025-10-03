@@ -1,12 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { FaFacebookF, FaTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaGithub, FaInstagram } from "react-icons/fa";
 
 function Footer() {
   const navigate = useNavigate();
   return (
     <footer className="bg-black text-white py-4">
       <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between">
+        
         {/* Left Side */}
         <div className="flex items-center mb-2 sm:mb-0">
           <p className="text-sm pr-2">Veeresh Hiremath</p>
@@ -20,7 +21,7 @@ function Footer() {
         </div>
 
         {/* Right Side (Social Icons) */}
-        <div className="flex space-x-4 text-lg">
+        <div className="flex space-x-5 text-2xl">
           <a
             href="https://www.facebook.com/veeresh.hiremath.05"
             target="_blank"
@@ -52,6 +53,14 @@ function Footer() {
             className="hover:text-gray-400 transition-colors"
           >
             <FaGithub />
+          </a>
+          <a
+            href="https://www.instagram.com/veereshmh_90/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-pink-500 transition-colors"
+          >
+            <FaInstagram />
           </a>
         </div>
       </div>
