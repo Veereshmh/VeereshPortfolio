@@ -1,192 +1,79 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Contact() {
-  const [activeSection, setActiveSection] = useState("");
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
-    phone: "",
     message: "",
-    date: "",
-    time: "",
-    projectDetails: "",
-    checkboxes: [],
-    infoTypes: []
   });
 
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    if (type === "checkbox") {
-      setFormData((prev) => ({
-        ...prev,
-        [name]: checked
-          ? [...prev[name], value]
-          : prev[name].filter((item) => item !== value)
-      }));
-    } else {
-      setFormData((prev) => ({
-        ...prev,
-        [name]: value
-      }));
-    }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
-    alert("Form submitted! Check console for data.");
+
+    // Get existing data
+    const existingData = JSON.parse(localStorage.getItem("contacts")) || [];
+
+    // Add new data
+    const updatedData = [...existingData, formData];
+    localStorage.setItem("contacts", JSON.stringify(updatedData));
+
+    // Navigate to display page
+    navigate("/contacts");
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-6">Contact Us</h1>
-      <form onSubmit={handleSubmit} className="space-y-6">
-
-        {/* Basic fields */}
-        <div>
-          <label className="block font-medium">Name</label>
-          <input
-            type="text"
-            name="name"
-            onChange={handleInputChange}
-            className="w-full border p-2 rounded"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block font-medium">Email</label>
-          <input
-            type="email"
-            name="email"
-            onChange={handleInputChange}
-            className="w-full border p-2 rounded"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block font-medium">Phone</label>
-          <input
-            type="tel"
-            name="phone"
-            onChange={handleInputChange}
-            className="w-full border p-2 rounded"
-          />
-        </div>
-
-        {/* Options */}
-        <div className="space-y-2">
-          <button
-            type="button"
-            onClick={() => setActiveSection("talk")}
-            className={`block w-full text-left border p-2 rounded ${activeSection === "talk" ? "bg-gray-200" : ""}`}
-          >
-            Schedule a time to talk
-          </button>
-          {activeSection === "talk" && (
-            <div className="space-y-2 mt-2 pl-4">
-              <input
-                type="date"
-                name="date"
-                onChange={handleInputChange}
-                className="border p-2 rounded w-full"
-              />
-              <input
-                type="time"
-                name="time"
-                onChange={handleInputChange}
-                className="border p-2 rounded w-full"
-              />
-            </div>
-          )}
-
-          <button
-            type="button"
-            onClick={() => setActiveSection("project")}
-            className={`block w-full text-left border p-2 rounded ${activeSection === "project" ? "bg-gray-200" : ""}`}
-          >
-            Discuss a job or project
-          </button>
-          {activeSection === "project" && (
-            <div className="space-y-2 mt-2 pl-4">
-              <textarea
-                name="projectDetails"
-                onChange={handleInputChange}
-                className="border p-2 rounded w-full"
-                placeholder="Describe your project..."
-              ></textarea>
-              <div>
-                <label>
-                  <input
-                    type="checkbox"
-                    name="checkboxes"
-                    value="Design"
-                    onChange={handleInputChange}
-                  />{" "}
-                  Design
-                </label>
-                <label className="ml-4">
-                  <input
-                    type="checkbox"
-                    name="checkboxes"
-                    value="Development"
-                    onChange={handleInputChange}
-                  />{" "}
-                  Development
-                </label>
-                <label className="ml-4">
-                  <input
-                    type="checkbox"
-                    name="checkboxes"
-                    value="Testing"
-                    onChange={handleInputChange}
-                  />{" "}
-                  Testing
-                </label>
-              </div>
-            </div>
-          )}
-
-          <button
-            type="button"
-            onClick={() => setActiveSection("info")}
-            className={`block w-full text-left border p-2 rounded ${activeSection === "info" ? "bg-gray-200" : ""}`}
-          >
-            Request additional information
-          </button>
-          {activeSection === "info" && (
-            <div className="space-y-2 mt-2 pl-4">
-              <p className="font-medium">Please select type(s) of requested information*</p>
-              {["Work Portfolio", "References", "Background Check", "Other", "Resume"].map((type) => (
-                <label key={type} className="block">
-                  <input
-                    type="checkbox"
-                    name="infoTypes"
-                    value={type}
-                    onChange={handleInputChange}
-                  />{" "}
-                  {type}
-                </label>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Message */}
-        <div>
-          <label className="block font-medium">Message</label>
-          <textarea
-            name="message"
-            onChange={handleInputChange}
-            className="w-full border p-2 rounded"
-          ></textarea>
-        </div>
-
-        {/* Submit */}
+    <div className="max-w-md mx-auto p-6 bg-white shadow-lg rounded-lg mt-8">
+      <h2 className="text-2xl font-bold mb-4">Contact Form</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <input
+          type="text"
+          name="firstName"
+          placeholder="First Name"
+          value={formData.firstName}
+          onChange={handleChange}
+          className="w-full border p-2 rounded"
+          required
+        />
+        <input
+          type="text"
+          name="lastName"
+          placeholder="Last Name"
+          value={formData.lastName}
+          onChange={handleChange}
+          className="w-full border p-2 rounded"
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+          className="w-full border p-2 rounded"
+          required
+        />
+        <textarea
+          name="message"
+          placeholder="Message"
+          value={formData.message}
+          onChange={handleChange}
+          className="w-full border p-2 rounded"
+          required
+        />
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
         >
           Submit
         </button>
