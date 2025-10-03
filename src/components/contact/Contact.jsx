@@ -68,9 +68,9 @@ function Contact() {
         {/* Left Side - Info */}
         <div className="space-y-4">
           <h2 className="text-2xl font-bold">Our Address</h2>
-          <p>📍 123 Main Street, Bangalore, India</p>
-          <p>📧 info@example.com</p>
-          <p>📞 +91 98765 43210</p>
+          <p>📍 Bangalore, India</p>
+          <p>📧 Veereshmh407@gmail.com</p>
+          <p>📞 +91 9986027208 / 6366621888</p>
         </div>
 
         {/* Right Side - Form */}
