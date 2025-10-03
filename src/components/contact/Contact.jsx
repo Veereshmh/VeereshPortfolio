@@ -79,13 +79,13 @@ function Contact() {
       <div className="bg-gray-100 p-6 rounded-lg shadow">
         <h2 className="text-xl font-bold mb-4">Contact Information</h2>
         <p className="mb-2">
-          <strong>Address:</strong> #123, MG Road, Bengaluru, India
+          <strong>Address:</strong> Bengaluru
         </p>
         <p className="mb-2">
-          <strong>Email:</strong> veereshhiremath@example.com
+          <strong>Email:</strong> Veereshmh407@gmail.com.com
         </p>
         <p className="mb-2">
-          <strong>Phone:</strong> +91 98765 43210
+          <strong>Phone:</strong> +91 9986027208 / 6366621888
         </p>
       </div>
 
