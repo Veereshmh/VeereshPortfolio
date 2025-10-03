@@ -22,7 +22,7 @@ function Footer() {
         {/* Right Side (Social Icons) */}
         <div className="flex space-x-4 text-lg">
           <a
-            href="https://facebook.com"
+            href="https://www.facebook.com/veeresh.hiremath.05"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-blue-500 transition-colors"
@@ -30,7 +30,7 @@ function Footer() {
             <FaFacebookF />
           </a>
           <a
-            href="https://twitter.com"
+            href="https://x.com/veereshmh4071"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-sky-400 transition-colors"
@@ -38,7 +38,7 @@ function Footer() {
             <FaTwitter />
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/veeresh-hiremath-05/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-blue-400 transition-colors"
@@ -46,7 +46,7 @@ function Footer() {
             <FaLinkedinIn />
           </a>
           <a
-            href="https://github.com"
+            href="https://veereshmh.github.io/VeereshPortfolio/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-gray-400 transition-colors"
