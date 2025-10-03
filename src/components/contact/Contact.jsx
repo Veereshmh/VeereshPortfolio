@@ -82,7 +82,7 @@ function Contact() {
           <strong>Address:</strong> Bengaluru
         </p>
         <p className="mb-2">
-          <strong>Email:</strong> Veereshmh407@gmail.com.com
+          <strong>Email:</strong> Veereshmh407@gmail.com
         </p>
         <p className="mb-2">
           <strong>Phone:</strong> +91 9986027208 / 6366621888
