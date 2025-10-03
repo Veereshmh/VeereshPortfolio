@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Contact() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -10,53 +12,60 @@ function Contact() {
 
   const [errors, setErrors] = useState({});
 
-  // Validation
-  const validate = (name, value) => {
-    let error = "";
-    if (!value.trim()) {
-      error = `${name} is required`;
-    } else if (name === "email") {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(value)) error = "Invalid email address";
+  // Validation function
+  const validateField = (name, value) => {
+    if (!value.trim()) return `${name} is required`;
+    if (name === "email") {
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!regex.test(value)) return "Invalid email address";
     }
-    return error;
+    if (name === "message" && value.trim().length < 10)
+      return "Message must be at least 10 characters";
+    return "";
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    setErrors({ ...errors, [name]: validate(name, value) });
+    setErrors({ ...errors, [name]: validateField(name, value) });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let newErrors = {};
-    Object.keys(formData).forEach((key) => {
-      newErrors[key] = validate(key, formData[key]);
-    });
+
+    // Validate all fields
+    const newErrors = {};
+    Object.keys(formData).forEach(
+      (key) => (newErrors[key] = validateField(key, formData[key]))
+    );
 
     setErrors(newErrors);
 
     if (Object.values(newErrors).every((err) => err === "")) {
+      // Save in localStorage
       const existingData = JSON.parse(localStorage.getItem("contacts")) || [];
-      const updatedData = [...existingData, formData];
-      localStorage.setItem("contacts", JSON.stringify(updatedData));
-      alert("Form submitted successfully!");
+      localStorage.setItem(
+        "contacts",
+        JSON.stringify([...existingData, formData])
+      );
+
+      // Clear form
       setFormData({ firstName: "", lastName: "", email: "", message: "" });
+
+      alert("Thank you! Your message has been sent.");
     }
   };
 
   return (
-    <div>
+    <div className="max-w-4xl mx-auto p-6 mt-8">
       {/* Banner */}
-      <div className="bg-blue-600 text-white py-16 text-center">
+      <div className="bg-blue-600 text-white py-16 text-center rounded-lg mb-8">
         <h1 className="text-4xl font-bold">Contact Us</h1>
-        <p className="text-lg mt-2">We’d love to hear from you!</p>
+        <p className="mt-2 text-lg">We’d love to hear from you!</p>
       </div>
 
-      {/* Contact Section */}
-      <div className="max-w-6xl mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-10 mt-8">
-        {/* Left Side - Address */}
+      <div className="grid md:grid-cols-2 gap-8">
+        {/* Left Side - Info */}
         <div className="space-y-4">
           <h2 className="text-2xl font-bold">Our Address</h2>
           <p>📍 123 Main Street, Bangalore, India</p>
@@ -65,44 +74,37 @@ function Contact() {
         </div>
 
         {/* Right Side - Form */}
-        <div className="bg-white shadow-lg p-6 rounded-lg">
-          <h2 className="text-2xl font-bold">Get In Touch</h2>
-          <p className="text-gray-500 mb-4">Fill out the form below</p>
+        <div className="bg-white p-6 rounded-lg shadow-lg">
+          <h2 className="text-2xl font-bold mb-4">Get In Touch</h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* First & Last Name */}
             <div className="flex gap-4">
-              <div className="relative w-1/2">
+              <div className="flex-1">
+                <label className="block mb-1 font-medium">First Name</label>
                 <input
                   type="text"
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleChange}
-                  className="peer w-full border p-2 rounded focus:outline-none focus:border-blue-500"
-                  placeholder=" "
+                  className="w-full border p-2 rounded focus:outline-none focus:border-blue-500"
                   required
                 />
-                <label className="absolute left-2 top-2 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-blue-500">
-                  First Name
-                </label>
                 {errors.firstName && (
                   <p className="text-red-500 text-sm">{errors.firstName}</p>
                 )}
               </div>
 
-              <div className="relative w-1/2">
+              <div className="flex-1">
+                <label className="block mb-1 font-medium">Last Name</label>
                 <input
                   type="text"
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleChange}
-                  className="peer w-full border p-2 rounded focus:outline-none focus:border-blue-500"
-                  placeholder=" "
+                  className="w-full border p-2 rounded focus:outline-none focus:border-blue-500"
                   required
                 />
-                <label className="absolute left-2 top-2 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-blue-500">
-                  Last Name
-                </label>
                 {errors.lastName && (
                   <p className="text-red-500 text-sm">{errors.lastName}</p>
                 )}
@@ -110,38 +112,32 @@ function Contact() {
             </div>
 
             {/* Email */}
-            <div className="relative">
+            <div>
+              <label className="block mb-1 font-medium">Email</label>
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="peer w-full border p-2 rounded focus:outline-none focus:border-blue-500"
-                placeholder=" "
+                className="w-full border p-2 rounded focus:outline-none focus:border-blue-500"
                 required
               />
-              <label className="absolute left-2 top-2 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-blue-500">
-                Email
-              </label>
               {errors.email && (
                 <p className="text-red-500 text-sm">{errors.email}</p>
               )}
             </div>
 
             {/* Message */}
-            <div className="relative">
+            <div>
+              <label className="block mb-1 font-medium">Message</label>
               <textarea
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
                 rows="4"
-                className="peer w-full border p-2 rounded focus:outline-none focus:border-blue-500"
-                placeholder=" "
+                className="w-full border p-2 rounded focus:outline-none focus:border-blue-500"
                 required
               />
-              <label className="absolute left-2 top-2 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-blue-500">
-                Message
-              </label>
               {errors.message && (
                 <p className="text-red-500 text-sm">{errors.message}</p>
               )}

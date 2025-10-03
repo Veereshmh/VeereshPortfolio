@@ -1,50 +1,41 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 function ContactsTable() {
-  const navigate = useNavigate();
   const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem("contacts")) || [];
-    setContacts(storedData);
+    const data = JSON.parse(localStorage.getItem("contacts")) || [];
+    setContacts(data);
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto p-6 mt-8">
-      <h2 className="text-2xl font-bold mb-4">Submitted Contacts</h2>
-
-      {contacts.length === 0 ? (
-        <p>No data found.</p>
-      ) : (
-        <table className="w-full border border-gray-300">
-          <thead className="bg-gray-200">
+    <div className="max-w-6xl mx-auto p-6">
+      <h1 className="text-3xl font-bold mb-6">Submitted Contacts</h1>
+      <div className="overflow-x-auto">
+        <table className="min-w-full border border-gray-300">
+          <thead className="bg-gray-100">
             <tr>
-              <th className="border p-2">First Name</th>
-              <th className="border p-2">Last Name</th>
-              <th className="border p-2">Email</th>
-              <th className="border p-2">Message</th>
+              <th className="px-4 py-2 border">First Name</th>
+              <th className="px-4 py-2 border">Last Name</th>
+              <th className="px-4 py-2 border">Email</th>
+              <th className="px-4 py-2 border">Message</th>
             </tr>
           </thead>
           <tbody>
-            {contacts.map((contact, index) => (
-              <tr key={index} className="text-center">
-                <td className="border p-2">{contact.firstName}</td>
-                <td className="border p-2">{contact.lastName}</td>
-                <td className="border p-2">{contact.email}</td>
-                <td className="border p-2">{contact.message}</td>
+            {contacts.map((c, i) => (
+              <tr
+                key={i}
+                className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}
+              >
+                <td className="px-4 py-2 border">{c.firstName}</td>
+                <td className="px-4 py-2 border">{c.lastName}</td>
+                <td className="px-4 py-2 border">{c.email}</td>
+                <td className="px-4 py-2 border">{c.message}</td>
               </tr>
             ))}
           </tbody>
         </table>
-      )}
-
-      <button
-        onClick={() => navigate("/contact")}
-        className="mt-4 bg-black text-white px-4 py-2 rounded hover:bg-gray-800"
-      >
-        Back to Form
-      </button>
+      </div>
     </div>
   );
 }
