@@ -10,74 +10,158 @@ function Contact() {
     message: "",
   });
 
+  const [errors, setErrors] = useState({});
+
+  // ✅ Validation while typing
+  const validateField = (name, value) => {
+    let error = "";
+    switch (name) {
+      case "firstName":
+        if (!value.trim()) error = "First name is required";
+        break;
+      case "lastName":
+        if (!value.trim()) error = "Last name is required";
+        break;
+      case "email":
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
+          error = "Invalid email address";
+        break;
+      case "message":
+        if (value.trim().length < 10)
+          error = "Message must be at least 10 characters";
+        break;
+      default:
+        break;
+    }
+    return error;
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
     });
+
+    // Run validation immediately
+    setErrors({
+      ...errors,
+      [name]: validateField(name, value),
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Get existing data
-    const existingData = JSON.parse(localStorage.getItem("contacts")) || [];
+    // Final validation check
+    const newErrors = {};
+    Object.keys(formData).forEach((field) => {
+      const error = validateField(field, formData[field]);
+      if (error) newErrors[field] = error;
+    });
 
-    // Add new data
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return; // stop submit
+    }
+
+    // Save data
+    const existingData = JSON.parse(localStorage.getItem("contacts")) || [];
     const updatedData = [...existingData, formData];
     localStorage.setItem("contacts", JSON.stringify(updatedData));
 
-    // Navigate to display page
     navigate("/contacts");
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white shadow-lg rounded-lg mt-8">
-      <h2 className="text-2xl font-bold mb-4">Contact Form</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          type="text"
-          name="firstName"
-          placeholder="First Name"
-          value={formData.firstName}
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          required
-        />
-        <input
-          type="text"
-          name="lastName"
-          placeholder="Last Name"
-          value={formData.lastName}
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          required
-        />
-        <textarea
-          name="message"
-          placeholder="Message"
-          value={formData.message}
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          required
-        />
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
-        >
-          Submit
-        </button>
-      </form>
+    <div className="max-w-6xl mx-auto p-6 mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* Left Side - Address Info */}
+      <div className="bg-gray-100 p-6 rounded-lg shadow">
+        <h2 className="text-xl font-bold mb-4">Contact Information</h2>
+        <p className="mb-2">
+          <strong>Address:</strong> #123, MG Road, Bengaluru, India
+        </p>
+        <p className="mb-2">
+          <strong>Email:</strong> veereshhiremath@example.com
+        </p>
+        <p className="mb-2">
+          <strong>Phone:</strong> +91 98765 43210
+        </p>
+      </div>
+
+      {/* Right Side - Contact Form */}
+      <div className="bg-white shadow-lg rounded-lg p-6">
+        <h2 className="text-2xl font-bold mb-4">Contact Form</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {/* First & Last Name in one line */}
+          <div className="flex gap-4">
+            <div className="flex-1">
+              <input
+                type="text"
+                name="firstName"
+                placeholder="First Name"
+                value={formData.firstName}
+                onChange={handleChange}
+                className="w-full border p-2 rounded"
+              />
+              {errors.firstName && (
+                <p className="text-red-500 text-sm">{errors.firstName}</p>
+              )}
+            </div>
+            <div className="flex-1">
+              <input
+                type="text"
+                name="lastName"
+                placeholder="Last Name"
+                value={formData.lastName}
+                onChange={handleChange}
+                className="w-full border p-2 rounded"
+              />
+              {errors.lastName && (
+                <p className="text-red-500 text-sm">{errors.lastName}</p>
+              )}
+            </div>
+          </div>
+
+          {/* Email */}
+          <div>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full border p-2 rounded"
+            />
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email}</p>
+            )}
+          </div>
+
+          {/* Message */}
+          <div>
+            <textarea
+              name="message"
+              placeholder="Message"
+              value={formData.message}
+              onChange={handleChange}
+              className="w-full border p-2 rounded"
+              rows="4"
+            />
+            {errors.message && (
+              <p className="text-red-500 text-sm">{errors.message}</p>
+            )}
+          </div>
+
+          {/* Submit */}
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
