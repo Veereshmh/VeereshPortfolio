@@ -91,7 +91,7 @@ function Contact() {
       </div>
 
       {/* 🔹 Contact Content Section */}
-      <div className="max-w-6xl mx-auto p-6 mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Left Side - Address Info */}
         <div className="bg-gray-100 p-6 rounded-lg shadow">
           <h2 className="text-xl font-bold mb-4">Contact Information</h2>
