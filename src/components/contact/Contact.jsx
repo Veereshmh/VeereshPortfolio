@@ -109,6 +109,7 @@ function Contact() {
         {/* Right Side - Contact Form */}
         <div className="bg-white shadow-lg rounded-lg p-6">
           <h2 className="text-2xl font-bold mb-4">Contact Form</h2>
+          <p className="text-gray-600 mb-4">Fill out the form and we’ll get back to you soon.</p>
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* First & Last Name */}
             <div className="flex gap-4">
