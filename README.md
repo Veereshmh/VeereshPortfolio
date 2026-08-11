@@ -6,7 +6,7 @@ I am a Senior Front-End Developer with 9 years of experience in designing and de
 
 ## 🚀 Live Portfolio
 
-🔗 [View My Portfolio]([YOUR_LIVE_PORTFOLIO_URL](https://github.com/Veereshmh/VeereshPortfolio))
+🔗 [View My Portfolio]((https://github.com/Veereshmh/VeereshPortfolio))
 
 ## 👨‍💻 About Me
 
